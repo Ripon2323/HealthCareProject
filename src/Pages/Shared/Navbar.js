@@ -1,14 +1,28 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+
+    const [user] = useAuthState(auth);
+    //const [signOut, sloading, serror] = useSignOut(auth);
+    const logOut = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+    }
+
 
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/appoinment">Appoinment</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/reviews">Reviews</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        {
+            user && <li><Link to="/dashboard">Dashboard</Link></li>
+        }
+        <li>{user ? <button class="btn btn-ghost" onClick={logOut}>SignOut</button> : <Link to="/login">Login</Link>}</li>
     </React.Fragment>
     return (
         <div className="navbar bg-base-100 ">
@@ -28,7 +42,13 @@ const Navbar = () => {
                     {menuItems}
                 </ul>
             </div>
-           
+            <div className="navbar-end">
+                <label tabindex={1} for="my-drawer-2" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
+
+            </div>
+
         </div>
     );
 };
