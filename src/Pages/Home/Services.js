@@ -9,19 +9,19 @@ const Services = () => {
         {
             _id:1,
             name:"Fluoride Treatment",
-            description:"",
+            description:"Fluoride is a natural mineral that builds strong teeth and prevents cavities. It’s been an essential oral health treatment for decades. Fluoride supports healthy tooth enamel and fights the bacteria that harm teeth and gums.",
             img:fluoride
         },
         {
             _id:2,
             name:"Cavity Filling",
-            description:"",
+            description:"To treat a cavity your dentist will remove the decayed portion of the tooth and then fill the area on the tooth where the decayed material was removed.",
             img:cavity
         },
         {
             _id:3,
             name:"Teeth Whitening",
-            description:"",
+            description:"Teeth whitening involves bleaching your teeth to make them lighter. It can't make your teeth brilliant white, but it can lighten the existing colour by several shades.",
             img:whitening
         }
     ]

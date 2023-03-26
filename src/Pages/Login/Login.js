@@ -41,71 +41,74 @@ const Login = () => {
     }
 
     return (
-        <div className='flex h-screen justify-center items-center'>
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="text-center text-2xl font-bold">Login</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+            <div className='flex h-screen justify-center items-center'>
+                <div class="card w-96 bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="text-3xl font-semibold text-center text-purple-700">Login</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
-                            </label>
-                            <input type="email" placeholder="Your Email" class="input input-bordered w-full max-w-xs"
-                                {...register("email",
-                                    {
-                                        required: {
-                                            value: true,
-                                            message: 'Email is required'
-                                        },
-                                        pattern: {
-                                            value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                                            message: 'Provide a valid email'
-                                        }
+                            <div class="form-control w-full max-w-xs">
+                                <label class="label">
+                                    <span class=" text-xl font-bold">Email</span>
+                                </label>
+                                <input type="email" placeholder="Your Email" class="input input-bordered w-full max-w-xs"
+                                    {...register("email",
+                                        {
+                                            required: {
+                                                value: true,
+                                                message: 'Email is required'
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                                message: 'Provide a valid email'
+                                            }
 
-                                    })
-                                }
-                            />
-                            <label class="label">
-                                {errors.email?.type === 'required' && <span class="label-text-alt text-red">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red">{errors.email.message}</span>}
+                                        })
+                                    }
+                                />
+                                <label class="label">
+                                    {errors.email?.type === 'required' && <span class="label-text-alt text-red">{errors.email.message}</span>}
+                                    {errors.email?.type === 'pattern' && <span class="label-text-alt text-red">{errors.email.message}</span>}
 
 
-                            </label>
-                        </div>
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Password</span>
-                            </label>
-                            <input type="password" placeholder="Password" class="input input-bordered w-full max-w-xs"
-                                {...register("password",
-                                    {
-                                        required: {
-                                            value: true,
-                                            message: 'Password is required'
-                                        },
-                                        minLength: {
-                                            value: 6,
-                                            message: 'Must be 6 characters'
-                                        }
+                                </label>
+                            </div>
+                            <div class="form-control w-full max-w-xs">
+                                <label class="label">
+                                    <span class="text-xl font-bold">Password</span>
+                                </label>
+                                <input type="password" placeholder="Password" class="input input-bordered w-full max-w-xs"
+                                    {...register("password",
+                                        {
+                                            required: {
+                                                value: true,
+                                                message: 'Password is required'
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: 'Must be 6 characters'
+                                            }
 
-                                    })
-                                }
-                            />
-                            <label class="label">
-                                {errors.password?.type === 'required' && <span class="label-text-alt text-red">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span class="label-text-alt text-red">{errors.password.message}</span>}
+                                        })
+                                    }
+                                />
+                                <label class="label">
+                                    {errors.password?.type === 'required' && <span class="label-text-alt text-red">{errors.password.message}</span>}
+                                    {errors.password?.type === 'minLength' && <span class="label-text-alt text-red">{errors.password.message}</span>}
 
-                                {signInError}
-                            </label>
-                        </div>
+                                    {signInError}
+                                </label>
+                            </div>
 
-                        <input class="btn w-full max-w-xs text-white" type="submit" value="Login" />
-                    </form>
-                    <p><small>New to Doctors Portal? <Link className='text-primary' to='/signUp'>Create new account</Link></small></p>
-                    <div class="divider">OR</div>
-                    <button onClick={() => signInWithGoogle()} class="btn btn-active btn-accent">Continue With Google</button>
+                            <input class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600" type="submit" value="Login" />
+                        </form>
+                        <p><small>New to Doctors Portal and want to login as Patient <Link className='text-primary' to='/signUp'>Create new account</Link></small></p>
+                        <p><small>New to Doctors Portal and want to login as Doctor <Link className='text-primary' to='/doctorSignUp'>Create new account</Link></small></p>
+                        <div class="divider">OR</div>
+                        <button onClick={() => signInWithGoogle()} class="btn btn-active btn-accent">Continue With Google</button>
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 
 const BookingModal = ({ date, treatment, setTreatment }) => {
-    const { _id, name, slots } = treatment;
+    const { _id, name, slots ,price} = treatment;
     const [user, loading, error] = useAuthState(auth);
 
 
@@ -20,9 +20,12 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
             treatment: name,
             date: formattedDate,
             slot,
+            price,
             patient: user.email,
             patientName: user.displayName,
-            phone: event.target.phone.value
+            patientAge:event.target.age.value,
+            phone: event.target.phone.value,
+            disease:event.target.disease.value
         }
 
         fetch('http://localhost:5000/booking', {
@@ -67,6 +70,9 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                         </select>
                         <input type="text" name='name' disabled value={user?.displayName || ''} class="input input-bordered w-full max-w-xs" />
                         <input type="email" name='email' disabled value={user?.email || ''} class="input input-bordered w-full max-w-xs" />
+                        <input type="text" name='age' placeholder='Your age'  class="input input-bordered w-full max-w-xs" />
+                        <input type="text" name='disease' placeholder='Your disease'  class="input input-bordered w-full max-w-xs" />
+                        
             
                         <input type="text" name='phone' placeholder="Your Phone Number" class="input input-bordered w-full max-w-xs" />
                         <input type="submit" value="Submit" class="btn btn-secondary w-full max-w-xs" />
